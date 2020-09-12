@@ -34,8 +34,10 @@ function draw() {
   drawSprites();
   //add styles here
   textSize(15);
+  stroke("black");
   fill("white");
   text("Press the UP ARROW to feed your pet", 150, 100);
+  text("Food remaining: "+foodS, 200, 120);
 }
 
 function readStock(data){
@@ -44,6 +46,11 @@ console.log(foodS);
 }
 
 function writeStock(x){
+  if(x<=0){
+    x=0;
+  }else{
+    x=x-1;
+  }
   database.ref('/').update({
     Food:x
   })
